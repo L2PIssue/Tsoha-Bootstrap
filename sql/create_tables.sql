@@ -1,18 +1,18 @@
 CREATE TABLE Kayttaja
 (
-userID SERIAL PRIMARY KEY,
+id SERIAL PRIMARY KEY,
 nimimerkki varchar(255),
 etunimi varchar(255),
 sukunimi varchar(255),
 salasana varchar(255),
 tuutori boolean,
 admin boolean,
-ryhmaID integer references Fuksiryhma(ryhmaID)
+ryhmaID integer references Fuksiryhma(id)
 );
 
 CREATE TABLE Tapahtuma
 (
-tapahtumaID SERIAL PRIMARY KEY,
+id SERIAL PRIMARY KEY,
 nimi varchar(255),
 kuvaus varchar(255),
 paikka varchar(255),
@@ -22,22 +22,22 @@ pisteet integer
 
 CREATE TABLE Osallistuminen
 (
-osallistumisID SERIAL PRIMARY KEY,
+id SERIAL PRIMARY KEY,
 hyvaksytty boolean,
-tapahtumaID integer references Tapahtuma(tapahtumaID),
-kayttajaID integer references Kayttaja(kayttajaID)
+tapahtumaID integer references Tapahtuma(id),
+kayttajaID integer references Kayttaja(id)
 );
 
 CREATE TABLE Extrapisteet
 (
-pisteID SERIAL PRIMARY KEY,
+id SERIAL PRIMARY KEY,
 kuvaus varchar(255),
 pisteet integer,
-kayttajaID integer references Kayttaja(kayttajaID)
+kayttajaID integer references Kayttaja(id)
 );
 
 CREATE TABLE Fuksiryhma
 (
-ryhmaID SERIAL PRIMARY KEY,
+id SERIAL PRIMARY KEY,
 nimi varchar(255)
 );

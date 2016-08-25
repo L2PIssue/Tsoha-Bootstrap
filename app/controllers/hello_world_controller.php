@@ -11,13 +11,6 @@
         View::make('login.html');
     }
     
-    public static function fuksit() {
-        View::make('fuksit.html');
-    }
-    
-    public static function tapahtumat() {
-        View::make('tapahtumat.html');
-    }
 
     public static function sandbox(){
       // Testaa koodiasi täällä

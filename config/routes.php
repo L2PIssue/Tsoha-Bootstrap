@@ -8,12 +8,28 @@
     HelloWorldController::login();
   });
   
-  $routes->get('/fuksit', function() {
-      KayttajaController::fuksit();
+  $routes->get('/kayttajat', function() {
+      KayttajaController::index();
+  });
+  
+  $routes->get('/kayttaja/show', function() {
+      KayttajaController::show();
+  });
+  
+  $routes->get('/kayttaja/muokkaa', function() {
+      KayttajaController::edit();
   });
   
   $routes->get('/tapahtumat', function() {
-    HelloWorldController::tapahtumat();
+      TapahtumaController::index();
+  });
+  
+  $routes->get('/tapahtumat/show', function() {
+      TapahtumaController::show();
+  });
+  
+  $routes->get('/tapahtumat/muokkaa', function() {
+      TapahtumaController::edit();
   });
 
   $routes->get('/hiekkalaatikko', function() {
