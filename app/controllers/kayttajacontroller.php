@@ -1,5 +1,4 @@
 <?php
-include 'kayttaja.php';
 
 class KayttajaController extends BaseController{
   public static function index() {
@@ -12,12 +11,12 @@ class KayttajaController extends BaseController{
   }
   
   public static function show() {
-      View::make('kayttaja/show.html');
+    View::make('kayttaja/show.html');
       
   }
   
   public static function edit() {
-      View::make('kayttaja/muokkaa.html');
+    View::make('kayttaja/muokkaa.html');
       
   }
 }
