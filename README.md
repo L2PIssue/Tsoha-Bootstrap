@@ -8,3 +8,8 @@ Yleisiä linkkejä:
 ## Fuksipassi (HYK)
 
 Fuksipassi Helsingin yliopiston kemistit ry:lle
+
+Testikäyttäjät:
+nimimerkki: Fuksi, salasana: fuksi
+nimimerkki: Tuutori salasana: tuutori
+nimimerkki: Admin salasana: admin
