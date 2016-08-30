@@ -1,15 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Tapahtuman nimi</h1>
-  <p>
-    <button class="btn btn-danger">Poista</button> <a href="muokkaa" class="btn btn-primary">Muokkaa</a>
-  </p>
+  <h1>{{tapahtuma.nimi}}</h1>
+    
+    
   <ul>
-    <li><strong>Päivämäärä:</strong> 11.11.2011</li>
-    <li><strong>Aika:</strong> 16:00</li>
-    <li><strong>Pisteet:</strong> 9.12.2014</li>
+    <li><strong>Päivämäärä:</strong> {{tapahtuma.pvm}}</li>
+    <li><strong>Aika:</strong> {{tapahtuma.aika}}</li>
+    <li><strong>Paikka:</strong> {{tapahtuma.paikka}}</li>
+    <li><strong>Pisteet:</strong> {{tapahtuma.pisteet}}</li>
   </ul>
   <p>
-    Tähän kuvaus tapahtumasta.
+    {{tapahtuma.kuvaus}}
   </p>
+  {% if user_logged_in.admin %}
+    <a id="napit" class="btn btn-primary" href="{{base_path}}/tapahtumat/{{tapahtuma.id}}/muokkaa">Muokkaa</a>
+    <form id="napit" method="post" action="{{base_path}}/tapahtumat/{{tapahtuma.id}}/destroy" class="destroy-form">
+        <button type="submit" class="btn btn-danger">Poista</button>
+    </form>
+  {% endif %}
 {% endblock %}

@@ -3,8 +3,9 @@
   class HelloWorldController extends BaseController{
 
     public static function index(){
-      // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-      View::make('home.html');
+       
+      $hyvaksymatta = Osallistuminen::hyvaksymatta();
+      View::make('home.html', array('hyvaksymatta' => $hyvaksymatta));
     }
     
     public static function login() {

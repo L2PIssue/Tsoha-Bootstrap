@@ -8,12 +8,13 @@ VALUES ('Tuutori', 'Matti', 'Malli', 'tuutori', true, false);
 
 INSERT INTO Kayttaja
         (nimimerkki, etunimi, sukunimi, salasana, tuutori, admin)
-VALUES ('Paloma', 'Paloma', 'Ruiz', 'fuksi', true, true);
+VALUES ('Admin', 'Apua', 'Ähinää', 'admin', true, true);
 
 INSERT INTO Tapahtuma
-        (nimi, kuvaus, paikka, aika, pisteet)
-VALUES ('Fuksiaiset', 'Hauska tapahtuma', 'Helsinki', '2016-09-20', 5);
+        (nimi, kuvaus, paikka, pvm, aika, pisteet)
+VALUES ('Fuksiaiset', 'Hauska tapahtuma', 'Helsinki', '2016-09-20', '16:00', 5);
 
-INSERT INTO Fuksiryhma
-        (nimi)
-VALUES ('YoloFuksit');
+INSERT INTO Extrapisteet
+        (kuvaus, pisteet, fuksiid, tuutoriid)
+VALUES ('Kannoit kaljaa vau', 10, 1, 2);
+

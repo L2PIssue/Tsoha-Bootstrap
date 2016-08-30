@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+{% if errors %}
+    <div class="alert alert-danger">
+        {% for error in errors %}
+            <p>{{error}}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
     <div class="page-header">
         <h1>Tapahtumat</h1>
     </div>
 
      
-
-    <p>
-        <a href="#" class="btn btn-success">Lisää tapahtuma</a>
-    </p>
+    {% if user_logged_in.tuutori %}
+    <a href="tapahtumat/uusi" class="btn btn-success">Lisää tapahtuma</a>
+    {% endif %}
 
   <table class="table table-striped table-bordered">
     <thead>
@@ -18,23 +26,39 @@
         <th>Päivämäärä</th>
         <th>Aika</th>
         <th>Paikka</th>
+        <th>Pisteet</th>
         <th></th>
       </tr>
     </thead>
 
     <tbody>
+        {% for tapahtuma in tapahtumat %}
       <tr>
-        <td><a href="tapahtumat/show">Nimi</a></td>
-        <td>11.11.2011</td>
-        <td>14:00</td>
-        <td>Alina</td>
+        <td><a href="{{base_path}}/tapahtumat/{{tapahtuma.id}}">{{tapahtuma.nimi}}</a></td>
+        <td>{{tapahtuma.pvm}}</td>
+        <td>{{tapahtuma.aika}}</td>
+        <td>{{tapahtuma.paikka}}</td>
+        <td>{{tapahtuma.pisteet}}</td>
         <th>
-            <a class="btn btn-primary" href="tapahtumat/muokkaa">Muokkaa</a>
-            <a class="btn btn-success" href="#">Osallistuin</a>
-            <a class="btn btn-danger" href="#">En osallistunutkaan</a>
+            {% if user_logged_in.tuutori %}
+            <a class="btn btn-primary" href="tapahtumat/{{tapahtuma.id}}/muokkaa">Muokkaa</a>
+            {% else %}
+                {% if tapahtuma.id in oss %}
+                    <button type="button" class="btn btn-default disabled">Osallistuin</button>
+                {% else %}
+                {{oss}} 
+                {{tapahtuma.id}}
+                    <form method="post" action="{{base_path}}/tapahtumat/{{tapahtuma.id}}/osallistu" class="destroy-form">
+                        <input type="hidden" name="kayttajaid" value="{{user_logged_in.id}}">
+                        <input type="hidden" name="tapahtumaid" value="{{tapahtuma.id}}">
+                        <button type="submit" class="btn btn-success">Osallistuin</button>
+                    </form>
+                {% endif %}
+            {% endif %}
         </th>
         
       </tr>
+        {% endfor %}
     </tbody>
   </table>
 {% endblock %}

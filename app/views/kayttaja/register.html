@@ -1,30 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
+
+    {% if errors %}
+        <div class="alert alert-danger">
+            {% for error in errors %}
+                <p>{{error}}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
   <h1>Rekisteröidy</h1>
-  <form>
+  <form method="post" action="{{base_path}}/register">
     <div class="form-group">
       <label>Etunimi</label>
-      <input type="text" class="form-control">
+      <input type="text" name="etunimi" class="form-control">
     </div>
       
     <div class="form-group">
       <label>Sukunimi</label>
-      <input type="text" class="form-control">
+      <input type="text" name="sukunimi" class="form-control">
     </div>
       
     <div class="form-group">
       <label>Käyttäjätunnus</label>
-      <input type="text" class="form-control">
+      <input type="text" name="nimimerkki" class="form-control">
     </div>
-
+    
+    <div class="alert alert-danger">
+        <strong>Huom!</strong> Salasanasi ei ole turvassa tässä järjestelmässä, käytä salasanaa, jota et käytä muualla!
+    </div>
+      
     <div class="form-group">
       <label>Salasana</label>
-      <input type="password" class="form-control">
+      <input type="password" name="salasana" class="form-control">
     </div>
       
     <div class="form-group">
       <label>Salasana uudestaan</label>
-      <input type="password" class="form-control">
+      <input type="password" name="varmistus" class="form-control">
     </div>
 
     <button type="submit" class="btn btn-primary">Rekisteröidy</button>

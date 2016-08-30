@@ -2,7 +2,46 @@
 
 {% block content %}
   <div class="page-header">
+    
+    {% if user_logged_in %}
+    <h1>Hei {{user_logged_in.etunimi}}</h1>
+    {% else %}
     <h1>Tervetuloa HYKin fuksipassiin</h1>
+    {% endif %}
   </div>
+
+  <div>
+    {% if user_logged_in and user_logged_in.tuutori %}
+    <h3>Hyväksyntää odottavat osallistumiset:</h3>
+        
+            <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Nimi</th>
+                    <th>Tapahtuma</th>
+                    <th></th>
+                </tr>
+            </thead>
+            {% for h in hyvaksymatta %}
+            <tbody>
+              <tr>
+                <td><a href="{{base_path}}/kayttaja/{{h.kayttajaid}}">{{h.kayttajaetunimi}} {{h.kayttajasukunimi}}</a></td>
+                <td>{{h.tapahtumanimi}}</td>
+                <td>
+                    <form id="napit" method="post" action="{{base_path}}/hyvaksy/{{h.id}}" class="destroy-form">
+                        <button type="submit" class="btn btn-success">Hyväksy</button>
+                    </form>
+                    <form id="napit" method="post" action="{{base_path}}/hylkaa/{{h.id}}" class="destroy-form">
+                        <button type="submit" class="btn btn-danger">Hylkää</button>
+                    </form>
+                </td>
+              </tr>
+            </tbody>
+            {% endfor %}
+          </table>
+        
+    {% endif %}
+    
+</div>
 
 {% endblock %}

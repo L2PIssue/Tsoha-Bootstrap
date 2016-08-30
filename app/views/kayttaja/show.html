@@ -1,14 +1,54 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Essi Esimerkki</h1>
-  <p>
-    <button class="btn btn-danger">Poista</button> <a href="muokkaa" class="btn btn-primary">Muokkaa</a>
-  </p>
+
+{% if user_logged_in.tuutori == false and user_logged_in != kayttaja %}
+<h1>Profiili</h1>
+<p>Voit trakastella vain omaa profiiliasi.</p>
+{% else %}
+  <h1>{{kayttaja.etunimi}} {{kayttaja.sukunimi}}</h1>
+  
+    
   <ul>
-    <li><strong>Nimimerkki:</strong> Fuksi</li>
-    <li><strong>Pisteet:</strong> 5/li>
+    <li><strong>Nimimerkki:</strong> {{kayttaja.nimimerkki}}</li>
   </ul>
   
-  <h3>Extrapisteet:</h3>
+    {% if user_logged_in.admin and kayttaja.tuutori == false %}
+    <form id="napit" method="post" action="{{base_path}}/kayttaja/tuutoroi/{{kayttaja.id}}">
+         <button type="submit" class="btn btn-warning">Tuutoriksi</button>
+    </form>
+    {% endif %}
+    {% if kayttaja == user_logged_in or user_logged_in.admin %}
+    <form id="napit" method="post" action="{{base_path}}/kayttaja/{{kayttaja.id}}/destroy">
+         <button type="submit" class="btn btn-danger">Poista</button>
+    </form>
+    <a id="napit" href="{{base_path}}/kayttaja/{{kayttaja.id}}/muokkaa" class="btn btn-primary disabled">Muokkaa</a>
+    {% endif %}
   
+  {% if kayttaja.tuutori == false %}
+  <h3>Extrapisteet:</h3>
+    <table class="table table-striped table-bordered">
+    {% for p in pisteet %}
+    <thead>
+        <tr>
+            <th>Kuvaus</th>
+            <th>Pisteet</th>
+            <th>Myöntäjä</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>{{p.kuvaus}}</td>
+        <td>{{p.pisteet}}</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+    
+    {% endfor %}
+    </table>
+    {% endif %}
+
+{% endif %}
 {% endblock %}

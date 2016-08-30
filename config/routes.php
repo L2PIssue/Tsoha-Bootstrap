@@ -1,37 +1,93 @@
 <?php
 
+function check_logged_in(){
+  BaseController::check_logged_in();
+}
+
   $routes->get('/', function() {
     HelloWorldController::index();
   });
   
-  $routes->get('/login', function() {
-    HelloWorldController::login();
+  $routes->get('/login', function(){
+    KayttajaController::login();
   });
   
-  $routes->get('/kayttajat', function() {
+  $routes->post('/login', function(){
+    KayttajaController::handle_login();
+  });
+  
+  $routes->post('/logout', function(){
+    KayttajaController::logout();
+  });
+  
+  $routes->get('/kayttajat', 'check_logged_in', function() {
       KayttajaController::index();
   });
   
-  $routes->get('/kayttaja/show', function() {
-      KayttajaController::show();
+  $routes->post('/kayttaja/tuutoroi/:id', 'check_logged_in', function($id) {
+      KayttajaController::tuutoroi($id);
   });
   
-  $routes->get('/kayttaja/muokkaa', function() {
-      KayttajaController::edit();
+  $routes->get('/register', function() {
+      KayttajaController::register();
   });
   
-  $routes->get('/tapahtumat', function() {
+  $routes->post('/register', function() {
+      KayttajaController::handle_registeration();
+  });
+  
+  $routes->get('/kayttaja/:id', 'check_logged_in', function($id) {
+      KayttajaController::show($id);
+  });
+//  
+//  $routes->get('/kayttaja/:id/muokkaa', 'check_logged_in', function($id) {
+//      KayttajaController::edit($id);
+//  });
+  
+  $routes->post('/kayttaja/:id/destroy', 'check_logged_in', function($id) {
+      KayttajaController::destroy($id);
+  });
+  
+  $routes->get('/tapahtumat', 'check_logged_in', function() {
       TapahtumaController::index();
   });
   
-  $routes->get('/tapahtumat/show', function() {
-      TapahtumaController::show();
+  $routes->post('/tapahtumat', 'check_logged_in', function() {
+      TapahtumaController::store(); 
   });
   
-  $routes->get('/tapahtumat/muokkaa', function() {
-      TapahtumaController::edit();
+  $routes->get('/tapahtumat/uusi', 'check_logged_in', function() {
+      TapahtumaController::create();
+  });
+  
+  $routes->get('/tapahtumat/:id', 'check_logged_in', function($id) {
+      TapahtumaController::show($id);
+  });
+  
+  $routes->get('/tapahtumat/:id/muokkaa', 'check_logged_in', function($id) {
+      TapahtumaController::edit($id);
+  });
+  
+  $routes->post('/tapahtumat/:id/muokkaa', 'check_logged_in', function($id) {
+      TapahtumaController::update($id);
+  });
+  
+  $routes->post('/tapahtumat/:id/destroy', 'check_logged_in', function($id) {
+      TapahtumaController::destroy($id);
+  });
+  
+  $routes->post('/tapahtumat/:id/osallistu', 'check_logged_in', function() {
+    OsallistumisController::store();
+  });
+  
+  $routes->post('/hyvaksy/:id', 'check_logged_in', function($id) {
+      OsallistumisController::hyvaksy($id);
+  });
+  
+  $routes->post('/hylkaa/:id', 'check_logged_in', function($id) {
+      OsallistumisController::destroy($id);
   });
 
-  $routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
-  });
+//  $routes->get('/hiekkalaatikko', function() {
+//    HelloWorldController::sandbox();
+//  });
