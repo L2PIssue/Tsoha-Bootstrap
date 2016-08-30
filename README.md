@@ -9,7 +9,7 @@ Yleisiä linkkejä:
 
 Fuksipassi Helsingin yliopiston kemistit ry:lle
 
-Testikäyttäjät:
-nimimerkki: Fuksi, salasana: fuksi
-nimimerkki: Tuutori salasana: tuutori
-nimimerkki: Admin salasana: admin
+Testikäyttäjät:<br>
+nimimerkki: Fuksi, salasana: fuksi<br>
+nimimerkki: Tuutori, salasana: tuutori<br>
+nimimerkki: Admin, salasana: admin
