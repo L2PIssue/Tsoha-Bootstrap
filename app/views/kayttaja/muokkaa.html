@@ -2,30 +2,22 @@
 {% block content %}
   <h1>Muokkaa käyttäjän {{kayttaja.etunimi}} {{kayttaja.sukunimi}} tietoja</h1>
 
-  <form>
+  <form method="post" action="{{base_path}}/kayttaja/{{kayttaja.id}}/muokkaa">
     
     <div class="form-group">
-      <label>Nimimerkki</label>
-      <input name="nimimerkki" type="text" class="form-control" value="{{kayttaja.nimimerkki}}">
+        <label>Nimimerkki</label>
+        <input name="nimimerkki" type="text" class="form-control" value="{{kayttaja.nimimerkki}}">
     </div>
     <div class="form-group">
-      <label>Etunimi</label>
-      <input name="etunimi" type="text" class="form-control" value="{{kayttaja.etunimi}}">
+        <label>Etunimi</label>
+        <input name="etunimi" type="text" class="form-control" value="{{kayttaja.etunimi}}">
     </div>
     <div class="form-group">
-      <label>Sukunimi</label>
-      <input name="sukunimi" type="text" class="form-control" value="{{kayttaja.sukunimi}}">
+        <label>Sukunimi</label>
+        <input name="sukunimi" type="text" class="form-control" value="{{kayttaja.sukunimi}}">
     </div>
     <div class="form-group">
-      <label>Salasana</label>
-      <input name="salasana" type="password" class="form-control" value="{{kayttaja.salasana}}">
-    </div>
-    <div class="form-group">
-      <form method="post" action="{{base_path}}/kayttaja/{{kayttaja.id}}/muokkaa">
-        <input type="hidden" name="tuutori" value="{{kayttaja.tuutori}}">
-        <input type="hidden" name="admin" value="{{kayttaja.admin}}">
         <button type="submit" class="btn btn-primary">Tallenna</button>
-      </form>
     </div>
   </form>
 {% endblock %}

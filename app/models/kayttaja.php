@@ -110,8 +110,8 @@ class Kayttaja extends BaseModel {
     
     
     public function update() {
-        $query = DB::connection()->prepare('UPDATE Kayttaja SET nimimerkki = :nimimerkki, etunimi = :etunimi, sukunimi = :sukunimi, tuutori = :tuutori, admin = :admin WHERE id=:id');
-        $query->execute(array('nimimerkki' => $this->nimimerkki, 'etunimi' => $this->etunimi, 'sukunimi' => $this->sukunimi, 'tuutori' => $this->tuutori, 'admin' => $this->admin, 'id' => $this->id));
+        $query = DB::connection()->prepare('UPDATE Kayttaja SET nimimerkki = :nimimerkki, etunimi = :etunimi, sukunimi = :sukunimi WHERE id=:id');
+        $query->execute(array('nimimerkki' => $this->nimimerkki, 'etunimi' => $this->etunimi, 'sukunimi' => $this->sukunimi, 'id' => $this->id));
     }
     
     

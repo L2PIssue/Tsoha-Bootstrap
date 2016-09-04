@@ -87,10 +87,7 @@ class KayttajaController extends BaseController{
         'id' => $id,
         'nimimerkki' => $params['nimimerkki'],
         'etunimi' => $params['etunimi'],
-        'sukunimi' => $params['sukunimi'],
-        'salasana' => $params['salasana'],
-        'tuutori' => $params['tuutori'],
-        'admin' => $params['admin']
+        'sukunimi' => $params['sukunimi']
     );
     $kayttaja = new Kayttaja($attributes);
     $errors = $kayttaja->errors();
