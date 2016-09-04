@@ -1,30 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
+
+    {% if errors %}
+        <div class="alert alert-danger">
+            {% for error in errors %}
+                <p>{{error}}</p>
+            {% endfor %}
+        </div>
+    {% endif %} 
+
   <h1>Luo tapahtuma</h1>
   <form method="post" action="{{base_path}}/tapahtumat">
     <div class="form-group">
       <label>Tapahtuman nimi</label>
-      <input type="text" name="nimi" class="form-control">
+      <input type="text" name="nimi" class="form-control" value="{{tapahtuma.nimi}}">
     </div>
     <div class="form-group">
       <label>Päivämäärä</label>
-      <input type="text" name="pvm" class="form-control">
+      <input type="text" name="pvm" placeholder="vvvv-kk-pp" class="form-control" value="{{tapahtuma.pvm}}">
     </div>
     <div class="form-group">
       <label>Aika</label>
-      <input type="text" name="aika" class="form-control">
+      <input type="text" name="aika" placeholder="hh-mm" class="form-control" value="{{tapahtuma.aika}}">
     </div>
     <div class="form-group">
       <label>Paikka</label>
-      <input type="text" name="paikka" class="form-control">
+      <input type="text" name="paikka" class="form-control" value="{{tapahtuma.paikka}}">
     </div>
     <div class="form-group">
       <label>Kuvaus</label>
-      <textarea name="kuvaus" class="form-control"></textarea>
+      <textarea name="kuvaus" class="form-control">{{tapahtuma.kuvaus}}</textarea>
     </div>
     <div class="form-group">
       <label>Pisteet</label>
-      <input type="text" name="pisteet" class="form-control">
+      <input type="text" name="pisteet" class="form-control" value="{{tapahtuma.pisteet}}">
     </div>
 
     <button type="submit" class="btn btn-primary">Luo tapahtuma</button>

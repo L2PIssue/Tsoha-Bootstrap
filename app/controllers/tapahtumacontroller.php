@@ -21,21 +21,22 @@ class TapahtumaController extends BaseController{
   public static function store() {
       $params = $_POST;
       
-    $tapahtuma = new Tapahtuma(array(
-      'nimi' => $params['nimi'],
-      'kuvaus' => $params['kuvaus'],
-      'pvm' => $params['pvm'],
-      'aika' => $params['aika'],
-      'paikka' => $params['paikka'],
-      'pisteet' => $params['pisteet']
-    ));
+            $tapahtuma = new Tapahtuma(array(
+                  'nimi' => $params['nimi'],
+                  'kuvaus' => $params['kuvaus'],
+                  'pvm' => $params['pvm'],
+                  'aika' => $params['aika'],
+                  'paikka' => $params['paikka'],
+                  'pisteet' => $params['pisteet']
+            ));
+      
     
     $errors = $tapahtuma->errors();
     if (count($errors) == 0) {
         $tapahtuma->save();
         Redirect::to('/tapahtumat/' . $tapahtuma->id);
     } else {
-        View::make('tapahtuma/uusi.html', array('errors' => $errors));
+        View::make('tapahtuma/uusi.html', array('errors' => $errors, 'tapahtuma' => $tapahtuma));
     }
     
   }

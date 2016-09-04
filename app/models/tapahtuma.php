@@ -79,6 +79,7 @@ class Tapahtuma extends BaseModel {
         }
         return $errors;
     }
+    
 
 }
 
