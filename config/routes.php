@@ -39,10 +39,14 @@ function check_logged_in(){
   $routes->get('/kayttaja/:id', 'check_logged_in', function($id) {
       KayttajaController::show($id);
   });
-//  
-//  $routes->get('/kayttaja/:id/muokkaa', 'check_logged_in', function($id) {
-//      KayttajaController::edit($id);
-//  });
+  
+  $routes->get('/kayttaja/:id/muokkaa', 'check_logged_in', function($id) {
+      KayttajaController::edit($id);
+  });
+  
+  $routes->post('/kayttaja/:id/muokkaa', 'check_logged_in', function($id) {
+      KayttajaController::update($id);
+  });
   
   $routes->post('/kayttaja/:id/destroy', 'check_logged_in', function($id) {
       KayttajaController::destroy($id);

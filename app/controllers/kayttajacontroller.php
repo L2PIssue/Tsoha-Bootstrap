@@ -80,6 +80,30 @@ class KayttajaController extends BaseController{
       
   }
   
+  public static function update($id) {
+    $params = $_POST;
+      
+    $attributes = array(
+        'id' => $id,
+        'nimimerkki' => $params['nimimerkki'],
+        'etunimi' => $params['etunimi'],
+        'sukunimi' => $params['sukunimi'],
+        'salasana' => $params['salasana'],
+        'tuutori' => $params['tuutori'],
+        'admin' => $params['admin']
+    );
+    $kayttaja = new Kayttaja($attributes);
+    $errors = $kayttaja->errors();
+    
+    if (count($errors) == 0) {
+        $kayttaja->update();
+        Redirect::to('/kayttaja/' . $kayttaja->id);
+    } else {
+        View::make('kayttaja/muokkaa.html', array('errors' => $errors));
+    }
+    
+  }
+  
   
   public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Tapahtuma WHERE id = :id');

@@ -46,11 +46,31 @@ class TapahtumaController extends BaseController{
       
   }
   
+  public static function find($id) {
+        $query = DB::connection()->prepare('SELECT * FROM Tapahtuma WHERE id = :id LIMIT 1');
+        $query->execute(array('id' => $id));
+        $row = $query->fetch();
+        if ($row) {
+            $tapahtuma = new Tapahtuma(array(
+                'id' => $row['id'],
+                'nimi' => $row['nimi'],
+                'kuvaus' => $row['kuvaus'],
+                'paikka' => $row['paikka'],
+                'aika' => $row['aika'],
+                'pisteet' => $row['pisteet'],
+                'pvm' => $row['pvm']
+            ));
+            return $tapahtuma;
+        }
+        return null;
+    }
+  
   public static function edit($id) {
       $tapahtuma = Tapahtuma::find($id);
       View::make('tapahtuma/muokkaa.html', array('tapahtuma' => $tapahtuma));
       
   }
+  
   
   public static function update($id) {
       $params = $_POST;
