@@ -2,9 +2,14 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
+* [Linkki sovellukseeni](http://miiaramo.users.cs.helsinki.fi/fuksipassi)
 * [Linkki dokumentaatiooni](https://www.github.com)
 
-## Työn aihe
+## Fuksipassi (HYK)
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
+Fuksipassi Helsingin yliopiston kemistit ry:lle
+
+Testikäyttäjät:<br>
+nimimerkki: Fuksi, salasana: fuksi<br>
+nimimerkki: Tuutori, salasana: tuutori<br>
+nimimerkki: Admin, salasana: admin
