@@ -123,10 +123,10 @@ class Kayttaja extends BaseModel {
     public function validate_nimi(){
         $errors = array();
         if($this->etunimi == '' || $this->etunimi == null){
-            $errors[] = 'Nimi ei saa olla tyhjä!';
+            $errors[] = 'Etunimi ei saa olla tyhjä!';
         }
         if($this->sukunimi == '' || $this->sukunimi == null){
-            $errors[] = 'Nimi ei saa olla tyhjä!';
+            $errors[] = 'Sukunimi ei saa olla tyhjä!';
         }
         return $errors;
     }

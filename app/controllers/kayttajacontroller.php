@@ -16,11 +16,7 @@ class KayttajaController extends BaseController{
         
         $params = $_POST;
         $kayttajat = Kayttaja::all();
-        foreach ($kayttajat as $k) {
-            if ($params['nimimerkki'] == $k->nimimerkki) {
-                Redirect::to('/register', array('errors' => array('Nimimerkki on jo käytössä')));
-            }
-        }
+        
         
         $attributes = array(
             'nimimerkki' => $params['nimimerkki'],
@@ -30,8 +26,13 @@ class KayttajaController extends BaseController{
             'tuutori' => 0,
             'admin' => 0
         );
+        foreach ($kayttajat as $k) {
+            if ($params['nimimerkki'] == $k->nimimerkki) {
+                Redirect::to('/register', array('errors' => array('Nimimerkki on jo käytössä'), 'attributes' => $attributes));
+            }
+        }
         if ($params['salasana'] != $params['varmistus']) {
-            Redirect::to('/register', array('errors' => array('Salasanat eivät vastanneet toisiaan.')));
+            Redirect::to('/register', array('errors' => array('Salasanat eivät vastanneet toisiaan.'), 'attributes' => $attributes));
         }
         $kayttaja = new Kayttaja($attributes);
         $errors = $kayttaja->errors();
@@ -39,7 +40,7 @@ class KayttajaController extends BaseController{
             $kayttaja->save();
             Redirect::to('/login', array('message' => 'Rekisteröinti onnistui!'));
         } else {
-            View::make('kayttaja/register.html', array('error' => $errors, 'attributes' => $attributes));
+            View::make('kayttaja/register.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
   

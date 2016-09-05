@@ -20,12 +20,20 @@ class TapahtumaController extends BaseController{
   
   public static function store() {
       $params = $_POST;
+      $aika = null;
+      $pvm = null;
+      if ($params['aika'] != "") {
+          $aika = $params['aika'];
+      }
+      if ($params['aika'] != "") {
+          $pvm = $params['pvm'];
+      }
       
             $tapahtuma = new Tapahtuma(array(
                   'nimi' => $params['nimi'],
                   'kuvaus' => $params['kuvaus'],
-                  'pvm' => $params['pvm'],
-                  'aika' => $params['aika'],
+                  'pvm' => $pvm,
+                  'aika' => $aika,
                   'paikka' => $params['paikka'],
                   'pisteet' => $params['pisteet']
             ));
