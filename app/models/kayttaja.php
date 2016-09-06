@@ -67,6 +67,7 @@ class Kayttaja extends BaseModel {
                 'nimimerkki' => $row['nimimerkki'],
                 'etunimi' => $row['etunimi'],
                 'sukunimi' => $row['sukunimi'],
+                'salasana' => $row['salasana'],
                 'tuutori' => $row['tuutori'],
                 'admin' => $row['admin']
             ));

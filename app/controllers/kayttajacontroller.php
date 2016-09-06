@@ -88,7 +88,8 @@ class KayttajaController extends BaseController{
         'id' => $id,
         'nimimerkki' => $params['nimimerkki'],
         'etunimi' => $params['etunimi'],
-        'sukunimi' => $params['sukunimi']
+        'sukunimi' => $params['sukunimi'],
+        'salasana' => Kayttaja::find($id)->salasana
     );
     $kayttaja = new Kayttaja($attributes);
     $errors = $kayttaja->errors();
@@ -97,7 +98,7 @@ class KayttajaController extends BaseController{
         $kayttaja->update();
         Redirect::to('/kayttaja/' . $kayttaja->id);
     } else {
-        View::make('kayttaja/muokkaa.html', array('errors' => $errors));
+        View::make('kayttaja/muokkaa.html', array('errors' => $errors, 'kayttaja' => $kayttaja));
     }
     
   }

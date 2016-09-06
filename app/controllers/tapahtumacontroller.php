@@ -59,6 +59,8 @@ class TapahtumaController extends BaseController{
         $query = DB::connection()->prepare('SELECT * FROM Tapahtuma WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
+        
+        
         if ($row) {
             $tapahtuma = new Tapahtuma(array(
                 'id' => $row['id'],
@@ -84,18 +86,27 @@ class TapahtumaController extends BaseController{
   public static function update($id) {
       $params = $_POST;
       
+      $aika = null;
+      $pvm = null;
+      if ($params['aika'] != "") {
+          $aika = $params['aika'];
+      }
+      if ($params['aika'] != "") {
+          $pvm = $params['pvm'];
+      }
+      
     $attributes = array(
       'id' => $id,
       'nimi' => $params['nimi'],
       'kuvaus' => $params['kuvaus'],
-      'pvm' => $params['pvm'],
-      'aika' => $params['aika'],
+      'pvm' => $pvm,
+      'aika' => $aika,
       'paikka' => $params['paikka'],
       'pisteet' => $params['pisteet']
     );
     $tapahtuma = new Tapahtuma($attributes);
     $errors = $tapahtuma->errors();
-    
+
     if (count($errors) == 0) {
         $tapahtuma->update();
         Redirect::to('/tapahtumat/' . $tapahtuma->id);
