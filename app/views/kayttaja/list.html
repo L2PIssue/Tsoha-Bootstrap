@@ -20,7 +20,11 @@
         {% if kayttaja.tuutori == false %}
       <tr>
         <td><a href="{{base_path}}/kayttaja/{{kayttaja.id}}">{{kayttaja.etunimi}} {{kayttaja.sukunimi}}</a></td>
-        <td>{{kayttaja.getPisteet}}</td>
+        {% for piste in pisteet %}
+        {% if piste.kayttajaid == kayttaja.id %}
+        <td>{{piste.pisteet}}</td>
+        {% endif %}
+        {% endfor %}
       </tr>
       {% endif %}
       {% endfor %}

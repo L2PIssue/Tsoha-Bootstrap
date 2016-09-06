@@ -82,12 +82,16 @@ class Kayttaja extends BaseModel {
     }
     
     public function getPisteet() {
-        $query = DB::connection()->prepare('SELECT Kayttaja.id AS kid, Osallistuminen.id AS oid, Tapahtuma.id AS tid, Tapahtuma.pisteet AS pisteet FROM Kayttaja, Tapahtuma, Osallistuminen WHERE tapahtuma.id = osallistuminen.tapahtumaid AND kayttaja.id = osallistuminen.kayttajaid AND osallistuminen.hyvaksytty = true');
+        $query = DB::connection()->prepare('SELECT Kayttaja.id AS kayttajaid, sum(Tapahtuma.pisteet) as pisteet FROM Kayttaja, Tapahtuma, Osallistuminen WHERE 
+                tapahtuma.id = osallistuminen.tapahtumaid AND kayttaja.id = osallistuminen.kayttajaid AND osallistuminen.hyvaksytty = true group by kayttaja.id');
         $query->execute();
         $rows = $query->fetchAll();
-        $pisteet = 0;
+        $pisteet = array();
         foreach ($rows as $row) {
-            $pisteet += $row['pisteet'];
+            $pisteet[] = array(
+                    'kayttajaid' => $row['kayttajaid'],
+                    'pisteet' => $row['pisteet']
+            );
         }
         return $pisteet;
     }

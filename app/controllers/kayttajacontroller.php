@@ -2,8 +2,9 @@
 
 class KayttajaController extends BaseController{
   public static function index() {
-    $kayttajat = Kayttaja::all();
-    View::make('kayttaja/list.html', array('kayttajat' => $kayttajat));
+    $kayttajat = Kayttaja::All();
+    $pisteet = Kayttaja::getPisteet();
+    View::make('kayttaja/list.html', array('kayttajat' => $kayttajat, 'pisteet' => $pisteet));
         
   }
   
