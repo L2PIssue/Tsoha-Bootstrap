@@ -92,6 +92,3 @@ function check_logged_in(){
       OsallistumisController::destroy($id);
   });
 
-//  $routes->get('/hiekkalaatikko', function() {
-//    HelloWorldController::sandbox();
-//  });
