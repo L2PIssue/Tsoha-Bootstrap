@@ -5,17 +5,17 @@
   ini_set('display_errors', '1');
 
   // Selvitetään, missä kansiossa index.php on
-  $script_name = $_SERVER['SCRIPT_NAME'];
-  $explode =  explode('/', $script_name);
+  // $script_name = $_SERVER['SCRIPT_NAME'];
+  // $explode =  explode('/', $script_name);
 
-  if($explode[1] == 'index.php'){
-    $base_folder = '';
-  }else{
-    $base_folder = $explode[1];
-  }
+  // if($explode[1] == 'index.php'){
+  //   $base_folder = '';
+  // }else{
+  //   $base_folder = $explode[1];
+  // }
 
   // Määritetään sovelluksen juuripolulle vakio BASE_PATH
-  define('BASE_PATH', '/' . $base_folder);
+  define('BASE_PATH', '/' . 'index.php');
 
   // Luodaan uusi tai palautetaan olemassaoleva sessio
   if(session_id() == '') {
@@ -29,7 +29,7 @@
   require 'vendor/autoload.php';
 
   $routes = new \Slim\Slim();
-  $routes->add(new \Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware);
+  //$routes->add(new \Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware);
 
   $routes->get('/tietokantayhteys', function(){
     DB::test_connection();
