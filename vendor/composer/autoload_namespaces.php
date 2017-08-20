@@ -10,4 +10,5 @@ return array(
     'Whoops' => array($vendorDir . '/filp/whoops/src'),
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
     'Slim' => array($vendorDir . '/slim/slim'),
+    'Pimple' => array($vendorDir . '/pimple/pimple/src'),
 );

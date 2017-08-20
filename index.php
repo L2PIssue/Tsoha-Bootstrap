@@ -22,6 +22,21 @@
     session_start();
   }
 
+  $dbopts = parse_url(getenv('postgres://eehitjztgpulmg:175256241b51a2eac305ca0c23a8ad52902b29e086ab599b9b10f3a430d17cf3@ec2-54-75-249-162.eu-west-1.compute.amazonaws.com:5432/d5i3ppiq65bhro'));
+  $app->register(new Csanquer\Silex\PdoServiceProvider\Provider\PDOServiceProvider('pdo'),
+               array(
+                'pdo.server' => array(
+                   'driver'   => 'pgsql',
+                   'user' => $dbopts["eehitjztgpulmg"],
+                   'password' => $dbopts["175256241b51a2eac305ca0c23a8ad52902b29e086ab599b9b10f3a430d17cf3"],
+                   'host' => $dbopts["ec2-54-75-249-162.eu-west-1.compute.amazonaws.com"],
+                   'port' => $dbopts["5432"],
+                   'dbname' => ltrim($dbopts["d5i3ppiq65bhro"],'/')
+                   )
+               )
+  );
+
+
   // Asetetaan vastauksen Content-Type-otsake, jotta ääkköset näkyvät normaalisti
   header('Content-Type: text/html; charset=utf-8');
 
